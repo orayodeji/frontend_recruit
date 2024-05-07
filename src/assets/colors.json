@@ -1,0 +1,8 @@
+{
+  "primary": "#2E4053",
+  "secondary": "#f7f7f7",
+  "black": "#000000",
+  "gray": "#707070",
+  "lightGray": "rgba(185, 197, 207, 0.6)",
+  "optional": "#FFC107"
+}
