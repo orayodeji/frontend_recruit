@@ -138,7 +138,7 @@ const DashboardJob = () => {
               <a
                 className={`nav-link ${
                   activeTab === 1 ? "active" : ""
-                } general-color-text fw-bold`}
+                } fw-bold`}
                 aria-current="page"
                 href="#"
                 onClick={() => setActiveTab(1)}
@@ -149,8 +149,8 @@ const DashboardJob = () => {
             <li className="nav-item me-2">
               <a
                 className={`nav-link ${
-                  activeTab === 2 ? "active" : ""
-                } general-color-text fw-bold`}
+                  activeTab === 2 ? "active text-white" : ""
+                }  fw-bold`}
                 aria-current="page"
                 href="#"
                 onClick={() => setActiveTab(2)}
@@ -161,8 +161,8 @@ const DashboardJob = () => {
             <li className="nav-item me-2">
               <a
                 className={`nav-link ${
-                  activeTab === 3 ? "active" : ""
-                } general-color-text fw-bold`}
+                  activeTab === 3 ? "active text-white" : ""
+                }  fw-bold`}
                 aria-current="page"
                 href="#"
                 onClick={() => setActiveTab(3)}

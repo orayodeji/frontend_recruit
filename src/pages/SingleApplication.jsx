@@ -236,7 +236,7 @@ const SingleApplication = () => {
               <li className="nav-item me-2">
                 <a
                   className={`nav-link ${
-                    activeTab === 3 ? "active" : ""
+                    activeTab === 3 ? "active text-white" : ""
                   } general-color-text fw-bold`}
                   aria-current="page"
                   href="#"
