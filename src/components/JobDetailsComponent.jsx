@@ -179,6 +179,7 @@ const JobDetailsComponent = ({ jobObject, showApplyButton }) => {
 
 JobDetailsComponent.propTypes = {
   jobObject: PropTypes.object,
+  showApplyButton: PropTypes.object,
 };
 
 export default JobDetailsComponent;
