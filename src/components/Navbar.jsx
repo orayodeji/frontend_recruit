@@ -1,9 +1,17 @@
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdLogin } from "react-icons/md";
 import { SiGnuprivacyguard } from "react-icons/si";
+import { FaFile } from "react-icons/fa";
+import { MdDashboard, MdOutlineWork } from "react-icons/md";
+import { IoMdPerson } from "react-icons/io";
+import { logout } from "../store/reducer/auth";
+import { useDispatch } from "react-redux";
+import { MdLogout } from "react-icons/md";
 const Navbar = () => {
+  const dispatch = useDispatch();
   const { isLoggedIn, user } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light  border-bottom border-2 general-border-color">
       <div className="container-fluid">
@@ -14,35 +22,8 @@ const Navbar = () => {
           LRA
         </Link>
 
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse mt-md-0 mt-2" id="navbarNav">
-          <ul className="navbar-nav me-auto">
-            {/* <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
-                Home
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                About
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Contact
-              </a>
-            </li> */}
-          </ul>
+        <div className=" mt-md-0 mt-2" id="navbarNav">
+          <ul className="navbar-nav me-auto"></ul>
           <div className="d-flex">
             {isLoggedIn && (
               <div className="dropdown">
@@ -54,40 +35,110 @@ const Navbar = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  {/* <img
-                  src="https://via.placeholder.com/30"
-                  alt="Avatar"
-                  className="rounded-circle me-2"
-                /> */}
                   <span className="border general-border-color rounded-circle p-2 border-3 general-color-text  me-1">
                     {user.type === "jobseeker"
                       ? user.profile.first_name[0]
                       : user.profile.name[0]}
                   </span>
-                  {user.type === "jobseeker"
-                    ? user.profile.first_name
-                    : user.profile.name}
+                  <span className="d-none">
+                    {user.type === "jobseeker"
+                      ? user.profile.first_name
+                      : user.profile.name}
+                  </span>
                 </a>
                 <ul
                   className="dropdown-menu dropdown-menu-end"
                   aria-labelledby="dropdownMenuLink"
                 >
-                  <li>
-                    <Link to="/profile" className="dropdown-item" href="#">
-                      Profile
-                    </Link>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Settings
-                    </a>
+                  <li className=" text-center general-color-text fw-bold">
+                    <span>
+                      {" "}
+                      {user.type === "jobseeker"
+                        ? user.profile.first_name
+                        : user.profile.name}
+                    </span>
                   </li>
                   <li>
                     <hr className="dropdown-divider" />
                   </li>
+                  {user.type === "employer" && (
+                    <>
+                      <li>
+                        <Link
+                          to="/dashboard"
+                          className="dropdown-item d-inline-flex align-items-center general-color-text fw-bold"
+                          href="#"
+                          style={{ fontSize: "14px" }}
+                        >
+                          <MdDashboard
+                            style={{ fontSize: "14px" }}
+                            className="fa-2x"
+                          />
+                          <span className=" ms-2">Dashboard</span>
+                        </Link>
+                      </li>
+
+                      <li>
+                        <Link
+                          to="/dashboard-jobs"
+                          className="dropdown-item d-inline-flex align-items-center general-color-text fw-bold"
+                          href="#"
+                          style={{ fontSize: "14px" }}
+                        >
+                          <MdOutlineWork
+                            style={{ fontSize: "14px" }}
+                            className="fa-2x"
+                          />
+                          <span className=" ms-2">My Jobs</span>
+                        </Link>
+                      </li>
+                    </>
+                  )}
+                  {user.type === "jobseeker" && (
+                    <li>
+                      <Link
+                        to="/profile"
+                        className="dropdown-item d-inline-flex align-items-center general-color-text fw-bold"
+                        href="#"
+                      >
+                        <IoMdPerson
+                          style={{ fontSize: "14px" }}
+                          className="fa-2x"
+                        />
+                        Profile
+                      </Link>
+                    </li>
+                  )}
+
                   <li>
-                    <a className="dropdown-item" href="#">
-                      Logout
+                    <Link
+                      to="/applications"
+                      className="dropdown-item d-inline-flex align-items-center general-color-text fw-bold"
+                      href="#"
+                      style={{ fontSize: "14px" }}
+                    >
+                      <FaFile style={{ fontSize: "14px" }} className="fa-2x" />
+                      <span className=" ms-2">Applications</span>
+                    </Link>
+                  </li>
+
+                  <li>
+                    <a
+                      className="dropdown-item d-inline-flex align-items-center text-danger fw-bold"
+                      href="#"
+                      onClick={() => {
+                        console.log("Hello world");
+
+                        dispatch(logout());
+
+                        navigate("/");
+                      }}
+                    >
+                      <MdLogout
+                        style={{ fontSize: "14px" }}
+                        className="fa-2x"
+                      />
+                      <span className=" ms-2">Logout</span>
                     </a>
                   </li>
                 </ul>

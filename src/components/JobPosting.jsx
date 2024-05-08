@@ -26,6 +26,15 @@ const JobPosting = ({ jobObject }) => {
                 </span>
               </h6>
             )}
+
+            <p className=" mb-0">
+              <span
+                className=" text-capitalize fw-bold text-black-50"
+                style={{ fontSize: "13px" }}
+              >
+                £{jobObject.salary} / {jobObject.salary_type}
+              </span>
+            </p>
             <p className=" mb-0">
               <span className=" text-capitalize general-color-text fw-bold">
                 {jobObject.job_mode}

@@ -763,7 +763,7 @@ a:hover {
 }
 
 .todo-wrapper .todo-layout-content .form-row .task-input-group {
-  border: 1px solid #ced4da;
+  /* border: 1px solid #ced4da; */
   border-radius: 0.25rem;
 }
 

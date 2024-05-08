@@ -476,12 +476,12 @@ const JobSeekerProfileComponent = ({ readOnly, user }) => {
               <div className=" col-auto">
                 <h4>Educational Qualification</h4>
               </div>
-              <button
+              {/* <button
                 className=" col-auto btn btn-outline-primary"
                 onClick={() => setEduModal(true)}
               >
                 Add Qualification <FaPlus />{" "}
-              </button>
+              </button> */}
             </div>
 
             {user.profile.educational_qualification.map((item, index) => (
@@ -511,7 +511,7 @@ const JobSeekerProfileComponent = ({ readOnly, user }) => {
                       {` - ${moment(item.stop_date).format("MMM-yy")}`}
                     </p>
                   </div>
-                  <div className=" col-auto d-inline-flex align-items-center">
+                  {/* <div className=" col-auto d-inline-flex align-items-center">
                     <MdDelete
                       className=" text-danger position-absolute"
                       style={{
@@ -544,7 +544,7 @@ const JobSeekerProfileComponent = ({ readOnly, user }) => {
                         setEduModal(true);
                       }}
                     />
-                  </div>
+                  </div> */}
                 </div>
               </div>
             ))}
@@ -555,12 +555,12 @@ const JobSeekerProfileComponent = ({ readOnly, user }) => {
               <div className=" col-auto">
                 <h4>Skills</h4>
               </div>
-              <button
+              {/* <button
                 className=" col-auto btn btn-outline-primary"
                 onClick={() => setSkillModal(true)}
               >
                 Add Skills <FaPlus />{" "}
-              </button>
+              </button> */}
             </div>
 
             {user.profile.skills.map((item, index) => (
@@ -579,7 +579,7 @@ const JobSeekerProfileComponent = ({ readOnly, user }) => {
                     </span>
                   </p>
                 </div>
-                <div className="col-auto">
+                {/* <div className="col-auto">
                   <MdEdit
                     style={{ cursor: "pointer" }}
                     onClick={() => {
@@ -591,7 +591,7 @@ const JobSeekerProfileComponent = ({ readOnly, user }) => {
                       setSkillModal(true);
                     }}
                   />
-                </div>
+                </div> */}
               </div>
             ))}
           </div>
@@ -601,12 +601,12 @@ const JobSeekerProfileComponent = ({ readOnly, user }) => {
               <div className=" col-auto">
                 <h4>Word Experience</h4>
               </div>
-              <button
+              {/* <button
                 className=" col-auto btn btn-outline-primary"
                 onClick={() => setWorkModal(true)}
               >
                 Add Experience <FaPlus />{" "}
-              </button>
+              </button> */}
             </div>
 
             {user.profile.work_experience.map((item, index) => (
@@ -614,7 +614,7 @@ const JobSeekerProfileComponent = ({ readOnly, user }) => {
                 key={index}
                 className="border border-secondary shadow-sm rounded-2 p-2 mt-4  position-relative"
               >
-                <MdDelete
+                {/* <MdDelete
                   className=" text-danger position-absolute"
                   style={{
                     right: "10px",
@@ -622,7 +622,7 @@ const JobSeekerProfileComponent = ({ readOnly, user }) => {
                     cursor: "pointer",
                   }}
                   onClick={() => delWorkAction(item.id)}
-                />
+                /> */}
                 <div className="row justify-content-between align-items-baseline ">
                   <div className="col-auto">
                     <p style={{ fontSize: "22px" }} className=" mb-0">
@@ -640,7 +640,7 @@ const JobSeekerProfileComponent = ({ readOnly, user }) => {
                       {moment(item.start_date).format("MMM-yy")}
                       {` - ${moment(item.stop_date).format("MMM-yy")}`}
                     </p>
-                    <MdEdit
+                    {/* <MdEdit
                       className=""
                       style={{ cursor: "pointer" }}
                       onClick={() => {
@@ -660,7 +660,7 @@ const JobSeekerProfileComponent = ({ readOnly, user }) => {
                         });
                         setWorkModal(true);
                       }}
-                    />
+                    /> */}
                   </div>
                 </div>
                 <div

@@ -1,10 +1,10 @@
 import axios from "axios";
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-const EmployerJobs = async (data, token) => {
-  const { search, page, limit } = data;
+const EmployerJobs = async (current_page, token, search = "") => {
+  // const { search, page, limit } = data;
   return await axios.get(
-    `${BASE_URL}api/employers-jobs?search=${search}&page=${page}&limit=${limit}`,
+    `${BASE_URL}api/employers-jobs?search=${search}&page=${current_page}`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -44,8 +44,19 @@ const FindSuitableCandidate = async (id, token) => {
   });
 };
 
-const FetchJobApplicationForEmployers = async (id, token) => {
-  return await axios.get(`${BASE_URL}api/get-job-applications-employer/${id}`, {
+const FetchJobApplicationForEmployers = async (id, token, page) => {
+  return await axios.get(
+    `${BASE_URL}api/get-job-applications-employer/${id}?page=${page}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+};
+
+const FetchApplications = async (token, page) => {
+  return await axios.get(`${BASE_URL}api/get-all-applications?page=${page}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -83,8 +94,34 @@ const Applyjob = async (data, token) => {
     },
   });
 };
+
+const ShortlistCandidate = async (data, token) => {
+  return await axios.post(`${BASE_URL}api/shortlist-candidate`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+const TreatApplication = async (data, token) => {
+  return await axios.post(`${BASE_URL}api/treat-application`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+const GetJobStatsCount = async (token) => {
+  return await axios.get(`${BASE_URL}api/get-notification-counts`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
 export default {
   FindJob,
+  TreatApplication,
   SingleJob,
   CreateJob,
   EmployerJobs,
@@ -92,6 +129,9 @@ export default {
   FetchJobApplicationForEmployers,
   FetchJobApplicationDetails,
   SendMessage,
+  ShortlistCandidate,
   GetStats,
+  FetchApplications,
   Applyjob,
+  GetJobStatsCount,
 };

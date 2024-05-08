@@ -122,7 +122,7 @@ const ProfilePage = () => {
 
   const e_content = (
     <div className=" p-2 px-4 py-3">
-      <h4 className="text-primary">
+      <h4 className=" general-color-text fw-bold">
         {eduObj.id ? "Edit" : "Add"} Educational Qualification
       </h4>
       <div className="form-group mt-2">
@@ -403,7 +403,7 @@ const ProfilePage = () => {
           setShowButton(true);
         }, 2000); // Adjust delay as needed
       }
-    }, 5000);
+    }, 1000);
   };
 
   return (

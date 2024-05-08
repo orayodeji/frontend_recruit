@@ -27,8 +27,10 @@ const JobDetails = () => {
     GetData();
   }, [GetData, slug]);
   return (
-    <div className="row justify-content-center">
-      {jobObject !== null && <JobDetailsComponent jobObject={jobObject} />}
+    <div className="row justify-content-center px-5 px-lg-2 py-3">
+      {jobObject !== null && (
+        <JobDetailsComponent jobObject={jobObject} showApplyButton={true} />
+      )}
     </div>
   );
 };

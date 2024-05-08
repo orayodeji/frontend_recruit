@@ -60,8 +60,8 @@ export const ChatBoxDiv = styled.div`
   padding: 1rem;
   background: ${(props) => props.bg || "#d9d9d9"} !important;
   border-radius: 24px;
-  min-height: 65vh;
-  max-height: 75vh;
+  min-height: 40vh;
+  max-height: 65vh;
   overflow-y: overlay;
 
   ::-webkit-scrollbar-thumb {

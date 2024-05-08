@@ -73,6 +73,17 @@ export const authReducer = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    logout: (state) => {
+      console.log("Hwloeodk from  reducer");
+      console.log(state);
+      // console.log(arg);
+      state.user = null;
+      state.access_token = null;
+      state.isLoggedIn = false;
+      // localStorage.setItem("user_instance", JSON.stringify(arg.payload));
+      localStorage.clear();
+    },
+
     saveUser: (state, arg) => {
       console.log(state);
       console.log(arg);
@@ -82,6 +93,7 @@ export const authReducer = createSlice({
   },
   extraReducers: (builder) => {
     builder
+
       .addCase(authUser.pending, (state) => {
         state.isLoading = true;
       })
@@ -203,6 +215,6 @@ export const authReducer = createSlice({
   },
 });
 
-export const { saveUser } = authReducer.actions;
+export const { saveUser, logout } = authReducer.actions;
 
 export default authReducer.reducer;

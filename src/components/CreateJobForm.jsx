@@ -4,6 +4,7 @@ import Industry from "../assets/industry.json";
 import Education from "../assets/educationLevel.json";
 import Editor from "react-simple-wysiwyg";
 import { MdOutlineCancel } from "react-icons/md";
+import { isOnlyNumber } from "../utils";
 
 const CreateJobForm = ({ formObj, setFormObj, loading, performAction }) => {
   const [inputValue, setInputValue] = useState("");
@@ -43,6 +44,51 @@ const CreateJobForm = ({ formObj, setFormObj, loading, performAction }) => {
           value={formObj.location}
           placeholder="Job Location"
           onChange={(e) => setFormObj({ ...formObj, location: e.target.value })}
+        />
+      </div>
+      <div className="col-md-6 mt-2">
+        <label
+          htmlFor=""
+          className=" form-label fw-bold general-color-text"
+          style={{ fontSize: "16px" }}
+        >
+          Salary <span className=" text-danger">*</span>
+        </label>
+        <select
+          name=""
+          id=""
+          className="form-control text-capitalize"
+          value={formObj.salary_type}
+          onChange={(e) =>
+            setFormObj({ ...formObj, salary_type: e.target.value })
+          }
+        >
+          <option value="" disabled>
+            Please select option
+          </option>
+          {["hour", "week", "month", "year"].map((item, index) => (
+            <option value={item} key={index}>
+              {item}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="col-md-6 mt-2">
+        <label
+          htmlFor=""
+          className="form-label fw-bold general-color-text"
+          style={{ fontSize: "16px" }}
+        >
+          Salary <span className=" text-danger">*</span>
+        </label>
+
+        <input
+          className=" form-control"
+          type="text"
+          onKeyDown={(e) => isOnlyNumber(e)}
+          value={formObj.salary}
+          placeholder="Job Salary"
+          onChange={(e) => setFormObj({ ...formObj, salary: e.target.value })}
         />
       </div>
       <div className="col-md-6 mt-2">

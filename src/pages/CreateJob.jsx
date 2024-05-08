@@ -20,6 +20,8 @@ const CreateJob = () => {
     skills: ["excel", "vue", "nuxt"],
     job_type: "part-time",
     job_mode: "hybrid",
+    salary: "",
+    salary_type: "",
     educational_level: "",
     educational_qualification: "",
     industry: "healthcare",

@@ -5,8 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { authUser } from "../../store/reducer/auth";
 const Login = () => {
   const _obj = {
-    email: "vincipyro@gmail.com",
-    password: "Bolaji93,",
+    email: "",
+    password: "",
   };
 
   const [formObj, setFormObj] = useState(_obj);
@@ -17,15 +17,16 @@ const Login = () => {
   const actionFunc = async () => {
     const { payload } = await dispatch(authUser(formObj));
 
-    console.log(payload.data.body);
-    if (payload.data.body.profile_setup) {
-      if (payload.data.body.type === "jobseeker") {
-        navigate("/");
+    if (payload.status === 201) {
+      if (payload.data.body.profile_setup) {
+        if (payload.data.body.type === "jobseeker") {
+          navigate("/");
+        } else {
+          navigate("/dashboard");
+        }
       } else {
-        navigate("/dashboard");
+        navigate("/create-profile");
       }
-    } else {
-      navigate("/create-profile");
     }
   };
   return (

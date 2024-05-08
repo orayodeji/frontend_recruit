@@ -25,24 +25,13 @@ export const router = createBrowserRouter([
       { path: "/profile", element: <ProfilePage /> },
       { path: "/dashboard", element: <Dashboard /> },
       { path: "/create-job", element: <CreateJob /> },
-
-      // not done yet
       { path: "/job/:slug", element: <JobDetails /> },
-
-      // Not done
+      { path: "/single-dashboard-job/:slug", element: <DashboardJob /> },
       { path: "/applications", element: <Applications /> },
-      // not done
       { path: "/dashboard-jobs", element: <DashboardJobs /> },
+      { path: "/application/:slug", element: <SingleApplication /> },
     ],
   },
-
-  // done
   { path: "/login", element: <Login /> },
-  // done
   { path: "/register", element: <Register /> },
-
-  { path: "/profile", element: <ProfilePage /> },
-
-  { path: "/single-dashboard-job/:slug", element: <DashboardJob /> },
-  { path: "/application/:slug", element: <SingleApplication /> },
 ]);

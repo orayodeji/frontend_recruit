@@ -4,8 +4,29 @@ import "../assets/css/homepage.css";
 import api from "../services/job";
 import JobPosting from "../components/JobPosting";
 import Pagination from "../components/Pagination";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
+  const { isLoggedIn, access_token } = useSelector((state) => state.auth);
+
+  const [stats, setStats] = useState(null);
+  const getStats = useCallback(async () => {
+    try {
+      const { data } = await api.GetJobStatsCount(access_token);
+      console.log(data);
+      setStats(data.body);
+    } catch (error) {
+      console.log(error.response);
+    }
+  }, [access_token]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      getStats();
+    }
+  }, [getStats, isLoggedIn]);
+
   const _obj = {
     page: 1,
     // limit: 10,
@@ -16,7 +37,7 @@ const HomePage = () => {
   const [searchObj, setSearchObj] = useState(_obj);
   const [jobs, setJobs] = useState([]);
   const [pageCount, setPageCount] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
   const [search, setSearch] = useState("");
 
   const findJobs = useCallback(async (current_page, search) => {
@@ -24,6 +45,7 @@ const HomePage = () => {
       console.log(current_page);
       const { body, pagination_data } = await api.FindJob(current_page, search);
       setJobs(body);
+
       setTotalPages(pagination_data.total_pages);
       setPageCount(pagination_data.current_page);
       console.log(body);
@@ -60,14 +82,46 @@ const HomePage = () => {
   };
 
   return (
-    <div className="container h-100">
+    <div className="h-100 row justify-content-center">
+      {isLoggedIn && (
+        <>
+          {stats && stats.shortlistCounts > 0 && (
+            <div className=" text-center">
+              <span className=" text-success fw-normal">
+                {" "}
+                You have Been Shortlisted for{" "}
+                {stats.shortlistCounts === 1 ? "a" : stats.shortlistCounts} Job
+                {stats.shortlistCounts > 1 ? "s" : ""}{" "}
+                <Link to="/applications" className=" fw-bold">
+                  Click Here!!!
+                </Link>{" "}
+              </span>
+            </div>
+          )}
+
+          {stats && stats.scheduledCounts > 0 && (
+            <div className=" text-center">
+              <span className=" text-success fw-normal ">
+                {" "}
+                You have Been Scheduled an Interview for{" "}
+                {stats.scheduledCounts === 1 ? "a" : stats.scheduledCounts} Job
+                {stats.scheduledCounts > 1 ? "s" : ""}{" "}
+                <Link to="/applications" className=" fw-bold">
+                  Click Here!!!
+                </Link>{" "}
+              </span>
+            </div>
+          )}
+        </>
+      )}
       <div
         style={{
           display: "flex",
           marginTop: "10px",
-          width: "100%",
+          // width: "100%",
           marginBottom: "10px",
         }}
+        className="col-lg-8 col-md-9 col-11"
       >
         <input
           type="text"
@@ -102,7 +156,7 @@ const HomePage = () => {
           {/* <MdSend style={{ color: "white" }} /> */}
         </button>
       </div>
-      <div className="row">
+      <div className="row col-lg-8 col-md-9 col-11">
         {jobs.length > 0 ? (
           jobs.map((item, index) => <JobPosting jobObject={item} key={index} />)
         ) : (
@@ -110,11 +164,13 @@ const HomePage = () => {
         )}
       </div>
 
-      <Pagination
-        pageCount={totalPages}
-        currentPage={pageCount}
-        action={NextPage}
-      />
+      {totalPages > 1 && (
+        <Pagination
+          pageCount={totalPages}
+          currentPage={pageCount}
+          action={NextPage}
+        />
+      )}
     </div>
   );
 };
