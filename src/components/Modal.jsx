@@ -4,9 +4,7 @@ import PropTypes from "prop-types";
 import { useSpring } from "react-spring";
 import {
   ModalContainer,
-  // ModalHead,
   ModalSpace,
-  // ModalTitle,
   ModalWrapper,
   PositionIcon,
 } from "./modal.style";
@@ -40,9 +38,6 @@ function Modal({
         <PositionIcon iColor={iColor}>
           <MdOutlineCancel onClick={() => onClose(false)} />
         </PositionIcon>
-        {/* <ModalHead style={styleHead} icolor={iColor}>
-          <ModalTitle>{title}</ModalTitle>
-        </ModalHead> */}
         {content}
       </ModalContainer>
     </ModalWrapper>

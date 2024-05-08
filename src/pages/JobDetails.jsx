@@ -1,14 +1,15 @@
 import { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import api from "../services/job";
-// import { FaRegBookmark } from "react-icons/fa";
-// import moment from "moment";
-// import { useSelector } from "react-redux";
 import JobDetailsComponent from "../components/JobDetailsComponent";
+
+/**
+   * @description
+   * This method is used to fetch the details of a job in the application.
+   */
 const JobDetails = () => {
   const { slug } = useParams();
   const [jobObject, setJobObject] = useState(null);
-  // const { user } = useSelector((state) => state.auth);
 
   const GetData = useCallback(async () => {
     try {

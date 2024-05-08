@@ -10,17 +10,15 @@ import Pagination from "../components/Pagination";
 const DashboardJobs = () => {
   const { access_token } = useSelector((state) => state.auth);
   const [loading, setLoading] = useState(true);
-  // const _obj = {
-  //   page: 1,
-  //   limit: 5,
-  //   search: "",
-  // };
-
-  // const [searchObj, setSearchObj] = useState(_obj);
   const [jobs, setJobs] = useState([]);
   const [pageCount, setPageCount] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [search, setSearch] = useState("");
+
+  /**
+   * @description
+   * This method is used to fetch jobs for the employer in the application.
+   */
   const getData = useCallback(
     async (current_page, search) => {
       try {
@@ -117,7 +115,6 @@ const DashboardJobs = () => {
               onClick={commentSubmitForm}
             >
               Search
-              {/* <MdSend style={{ color: "white" }} /> */}
             </button>
           </div>
         </div>

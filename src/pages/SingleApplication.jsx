@@ -17,6 +17,11 @@ const SingleApplication = () => {
   const { slug } = useParams();
 
   const [pageData, setPageData] = useState(null);
+
+  /**
+   * @description
+   * This method is used to fetch details of a job application in the application.
+   */
   const GetDetails = useCallback(async () => {
     try {
       const { data, status } = await api.FetchJobApplicationDetails(

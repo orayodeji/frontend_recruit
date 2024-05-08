@@ -20,7 +20,6 @@ export default class AlertService {
   }
 
   static displayErrorAlert(message) {
-    // console.log(error);
 
     return toast(
       message,

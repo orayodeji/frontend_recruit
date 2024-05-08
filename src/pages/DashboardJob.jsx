@@ -11,7 +11,6 @@ import Navbar from "../components/Navbar";
 import GoBackBTN from "../components/GoBackBTN";
 import Pagination from "../components/Pagination";
 import AlertService from "../services/alertService";
-// import ProfileJob from "../assets/myProfile.json";
 const DashboardJob = () => {
   const { access_token, user } = useSelector((state) => state.auth);
   const [loading, isLoading] = useState(true);
@@ -21,10 +20,13 @@ const DashboardJob = () => {
   const [applicants, setApplicants] = useState([]);
   const [pageCount, setPageCount] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  // const [search, setSearch] = useState("");
   const [candidateId, setCandidateId] = useState("");
   const [formLoading, setFormLoading] = useState(false);
 
+  /**
+   * @description
+   * This method is used to fetch applied jobs for employers in the application.
+   */
   const GetApplications = useCallback(
     async (current_page) => {
       try {
@@ -34,7 +36,6 @@ const DashboardJob = () => {
           current_page
         );
         console.log(data);
-        // console.log(status);
         setApplicants(data.body);
         setTotalPages(data.pagination_data.total_pages);
         setPageCount(data.pagination_data.current_page);
@@ -44,6 +45,11 @@ const DashboardJob = () => {
     },
     [access_token, slug]
   );
+
+  /**
+   * @description
+   * This method is used to get a single job the in the application.
+   */
   const GetData = useCallback(async () => {
     try {
       const { data, status } = await api.SingleJob(slug);
@@ -55,6 +61,8 @@ const DashboardJob = () => {
       console.log(error.response);
     }
   }, [slug]);
+
+
   const ShortlistCandidate = useCallback(
     async (id) => {
       try {
@@ -79,13 +87,17 @@ const DashboardJob = () => {
     },
     [GetApplications, access_token, slug]
   );
+
+  /**
+   * @description
+   * This method is used to find the qualified candidates for a job in the application.
+   */
   const GetCandidates = useCallback(async () => {
     try {
       const { data, status } = await api.FindSuitableCandidate(
         slug,
         access_token
       );
-      // console.log(data.body);
       setCandidates(data.body);
       console.log(status);
     } catch (error) {
@@ -98,26 +110,6 @@ const DashboardJob = () => {
   const NextPage = (pageNumber) => {
     GetApplications(pageNumber);
   };
-
-  // const trackEnterKey = (e) => {
-  //   if (e.key === "Enter") {
-  //     console.log("do validate");
-  //     if (search.length > 0) {
-  //       GetApplications(1, e.target.value);
-  //     }
-  //   }
-  //   if (e.target.value === "") {
-  //     GetApplications(1, e.target.value);
-  //   }
-  // };
-  // const commentSubmitForm = () => {
-  //   console.log("Hello World");
-  //   if (search.length > 0) {
-  //     GetApplications(1, search);
-  //   } else {
-  //     GetApplications(1, "");
-  //   }
-  // };
 
   useEffect(() => {
     GetData();
@@ -272,7 +264,6 @@ const DashboardJob = () => {
                       >
                         <div>{`${item.first_name[0]}${item.last_name[0]}`}</div>
                       </div>
-                      {/* <img className=" rounded-2" src={Img1} alt="" /> */}
                     </div>
 
                     <p className="mb-0 fw-bold mt-1">

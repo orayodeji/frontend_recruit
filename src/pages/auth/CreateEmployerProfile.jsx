@@ -13,6 +13,11 @@ const CreateEmployerProfile = () => {
   };
   const [formObj, setFormObj] = useState(_obj);
   const navigate = useNavigate();
+
+    /**
+   * @description
+   * This method is used to create an employer's profile in the application.
+   */
   const EmployerProfileAction = async () => {
     let { payload } = await dispatch(
       createEmployerProfile({ ...formObj, id: userId })

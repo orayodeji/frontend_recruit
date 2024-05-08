@@ -3,15 +3,10 @@ import api from "../services/job";
 import { Link, useParams } from "react-router-dom";
 import moment from "moment";
 import { useSelector } from "react-redux";
-import CreateJobForm from "../components/CreateJobForm";
-import { RandomAvatar } from "react-random-avatar";
-import Img1 from "../assets/img1.jpeg";
-import Navbar from "../components/Navbar";
 import GoBackBTN from "../components/GoBackBTN";
 import Pagination from "../components/Pagination";
 const Applications = () => {
   const { access_token, user } = useSelector((state) => state.auth);
-  // const [loading, isLoading] = useState(true);
   const { slug } = useParams();
   const [jobObject, setJobObject] = useState(null);
   const [candidates, setCandidates] = useState([]);
@@ -21,6 +16,10 @@ const Applications = () => {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
 
+  /**
+   * @description
+   * This method is used to fetch the list of applications of the current logged in user.
+   */
   const GetApplications = useCallback(
     async (current_page) => {
       try {
@@ -41,31 +40,6 @@ const Applications = () => {
     },
     [access_token]
   );
-  // const GetData = useCallback(async () => {
-  //   try {
-  //     const { data, status } = await api.SingleJob(slug);
-  //     console.log(data.body);
-  //     if (status === 200) {
-  //       setJobObject(data.body);
-  //     }
-  //   } catch (error) {
-  //     console.log(error.response);
-  //   }
-  // }, [slug]);
-
-  // const GetCandidates = useCallback(async () => {
-  //   try {
-  //     const { data, status } = await api.FindSuitableCandidate(
-  //       slug,
-  //       access_token
-  //     );
-  //     // console.log(data.body);
-  //     setCandidates(data.body);
-  //     console.log(status);
-  //   } catch (error) {
-  //     console.log(error.response);
-  //   }
-  // }, [access_token, slug]);
   useEffect(() => {
     GetApplications(1);
   }, []);
@@ -73,12 +47,6 @@ const Applications = () => {
     GetApplications(pageNumber);
   };
 
-  // useEffect(() => {
-  //   GetData();
-  //   GetCandidates();
-  // }, [GetData, GetCandidates]);
-
-  // const [activeTab, setActiveTab] = useState(2);
   return (
     <div className=" container-lg  bg-white p-3 rounded-3 mt-3">
       <GoBackBTN />

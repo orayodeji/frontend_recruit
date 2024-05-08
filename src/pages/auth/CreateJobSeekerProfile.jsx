@@ -19,6 +19,10 @@ const CreateJobSeekerProfile = () => {
   const [formObj, setFormObj] = useState(_obj);
   const navigate = useNavigate();
 
+  /**
+   * @description
+   * This method is used to create or update a job seeker's profile in the application.
+   */
   const JobSeekerProfileAction = async () => {
     const dateOfBirth = new Date(formObj.date_of_birth); // date of birth
     const currentDate = new Date(); // current date

@@ -39,6 +39,11 @@ const ProfilePage = () => {
   const [skillModal, setSkillModal] = useState(false);
   const [workModal, setWorkModal] = useState(false);
   const [eduModal, setEduModal] = useState(false);
+
+  /**
+   * @description
+   * This method is used to handle the delete functionality of the candidate's education history in the application.
+   */
   const delEduAction = useCallback(
     async (id) => {
       try {
@@ -55,6 +60,11 @@ const ProfilePage = () => {
     },
     [access_token, dispatch, user]
   );
+
+  /**
+   * @description
+   * This method is used to handle the delete functionality of the candidate's work experience in the application.
+   */
   const delWorkAction = useCallback(
     async (id) => {
       try {
@@ -87,6 +97,11 @@ const ProfilePage = () => {
       AlertService.displayErrorAlert(error.response.data.response_description);
     }
   };
+
+  /**
+   * @description
+   * This method is used to handle the adding/editing functionality of a candidate's work experience in the application.
+   */
   const AddEditExperience = async () => {
     setLoading(true);
     try {
@@ -103,6 +118,10 @@ const ProfilePage = () => {
     }
   };
 
+  /**
+   * @description
+   * This method is used to handle the skill creation functionality in the application.
+   */
   const AddSkillAction = async () => {
     setLoading(true);
     try {

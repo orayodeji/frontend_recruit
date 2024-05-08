@@ -29,7 +29,6 @@ const HomePage = () => {
 
   const _obj = {
     page: 1,
-    // limit: 10,
     search: "",
     pageCount: 1,
   };
@@ -118,7 +117,6 @@ const HomePage = () => {
         style={{
           display: "flex",
           marginTop: "10px",
-          // width: "100%",
           marginBottom: "10px",
         }}
         className="col-lg-8 col-md-9 col-11"
@@ -153,7 +151,6 @@ const HomePage = () => {
           onClick={commentSubmitForm}
         >
           Search
-          {/* <MdSend style={{ color: "white" }} /> */}
         </button>
       </div>
       <div className="row col-lg-8 col-md-9 col-11">

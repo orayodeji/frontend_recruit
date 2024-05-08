@@ -1,8 +1,4 @@
 import { useState } from "react";
-// import Industry from "../assets/industry.json";
-// import Education from "../assets/educationLevel.json";
-// import { MdOutlineCancel } from "react-icons/md";
-// import Editor from "react-simple-wysiwyg";
 import api from "../services/job";
 import AlertService from "../services/alertService";
 import { useSelector } from "react-redux";
@@ -30,14 +26,15 @@ const CreateJob = () => {
   };
 
   const [formObj, setFormObj] = useState(_obj);
-  // const [inputValue, setInputValue] = useState("");
 
+  /**
+   * @description
+   * This method is used to create job post in the application.
+   */
   const performAction = async () => {
     setLoading(true);
     try {
       const { status, data } = await api.CreateJob(formObj, access_token);
-
-      // console.log(res);
       if (status === 200) {
         navigate(`/single-dashboard-job/${data.body.id}`);
       }

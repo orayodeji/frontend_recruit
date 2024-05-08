@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useSelector, useDispatch } from "react-redux";
-import { FaPlus } from "react-icons/fa";
 import { useState } from "react";
 import Modal from "../components/Modal";
 import api from "../services/employer";
@@ -10,9 +9,7 @@ import AlertService from "../services/alertService";
 import Editor from "react-simple-wysiwyg";
 import Education from "../assets/educationLevel.json";
 import { saveUser } from "../store/reducer/auth";
-import { MdEdit } from "react-icons/md";
 import moment from "moment";
-import { MdDelete } from "react-icons/md";
 import PropTypes from "prop-types";
 const JobSeekerProfileComponent = ({ readOnly, user }) => {
   const { access_token } = useSelector((state) => state.auth);
@@ -42,6 +39,17 @@ const JobSeekerProfileComponent = ({ readOnly, user }) => {
   const [skillModal, setSkillModal] = useState(false);
   const [workModal, setWorkModal] = useState(false);
   const [eduModal, setEduModal] = useState(false);
+
+  /**
+   * @description
+   * This method is used to delete an educational qualification from the user's profile.
+   * It makes an API call to the backend to delete the qualification based on the provided ID.
+   * After successfully deleting the qualification, it updates the user's profile in the Redux store.
+   * It also displays success or error alerts based on the API response.
+   *
+   * @param {number} id - The ID of the educational qualification to be deleted.
+   * @returns {void}
+   */
   const delEduAction = useCallback(
     async (id) => {
       try {
@@ -58,6 +66,17 @@ const JobSeekerProfileComponent = ({ readOnly, user }) => {
     },
     [access_token, dispatch, user]
   );
+
+  /**
+   * @description
+   * This method is used to delete a work experience from a user's profile.
+   * It makes a request to the server using the `api.DeleteWork` function.
+   * Once the deletion is successful, it updates the user's profile in the Redux store.
+   * If an error occurs during the deletion process, it logs the error and displays an error alert.
+   *
+   * @param {number} id - The ID of the work experience to be deleted.
+   * @returns {void}
+   */
   const delWorkAction = useCallback(
     async (id) => {
       try {
@@ -75,6 +94,13 @@ const JobSeekerProfileComponent = ({ readOnly, user }) => {
     },
     [access_token, dispatch, user]
   );
+
+  /**
+   * @description
+   * This method is responsible for managing the addition or editing of educational qualifications for a job seeker.
+   * It sends a request to the backend API to add or update the educational qualification data,
+   * updates the user's profile data in the Redux store, and displays success or error alerts based on the response from the API.
+   */
   const AddEditEducation = async () => {
     setLoading(true);
     try {
@@ -90,6 +116,14 @@ const JobSeekerProfileComponent = ({ readOnly, user }) => {
       AlertService.displayErrorAlert(error.response.data.response_description);
     }
   };
+
+
+  /**
+   * @description
+   * This method is responsible for adding or editing work experience for a job seeker.
+   * It sends a request to the backend API, updates the user's profile in the Redux store,
+   * and displays success or error alerts based on the response from the backend API.
+   */
   const AddEditExperience = async () => {
     setLoading(true);
     try {
@@ -106,6 +140,13 @@ const JobSeekerProfileComponent = ({ readOnly, user }) => {
     }
   };
 
+  /**
+   * @description
+   * This method is used to add a new skill to the user's profile. It makes an asynchronous API call to the `AddSkill` function,
+   * passing the `skillObj` and `access_token` as parameters. If the API call is successful, it updates the user's profile with the new skill information,
+   * dispatches the `saveUser` action to update the user's state, resets the `skillObj` to its initial state, displays a success alert using the `AlertService`,
+   * closes the skill modal, and sets the loading state back to `false`. If the API call encounters an error, it sets the loading state back to `false` and displays an error alert using the `AlertService`.
+   */
   const AddSkillAction = async () => {
     setLoading(true);
     try {
@@ -476,12 +517,6 @@ const JobSeekerProfileComponent = ({ readOnly, user }) => {
               <div className=" col-auto">
                 <h4>Educational Qualification</h4>
               </div>
-              {/* <button
-                className=" col-auto btn btn-outline-primary"
-                onClick={() => setEduModal(true)}
-              >
-                Add Qualification <FaPlus />{" "}
-              </button> */}
             </div>
 
             {user.profile.educational_qualification.map((item, index) => (
@@ -511,40 +546,6 @@ const JobSeekerProfileComponent = ({ readOnly, user }) => {
                       {` - ${moment(item.stop_date).format("MMM-yy")}`}
                     </p>
                   </div>
-                  {/* <div className=" col-auto d-inline-flex align-items-center">
-                    <MdDelete
-                      className=" text-danger position-absolute"
-                      style={{
-                        right: "10px",
-                        bottom: "5px",
-                        cursor: "pointer",
-                      }}
-                      onClick={() => delEduAction(item.id)}
-                    />
-                    <MdEdit
-                      className=""
-                      style={{ cursor: "pointer" }}
-                      onClick={() => {
-                        setEduObj({
-                          ...eduObj,
-                          id: item.id,
-                          start_date: new Date(Date.parse(item.start_date))
-                            .toISOString()
-                            .split("T")[0],
-                          stop_date: new Date(Date.parse(item.stop_date))
-                            .toISOString()
-                            .split("T")[0],
-                          course: item.course,
-                          educational_level: item.educational_level,
-                          country: item.country,
-                          city: item.city,
-                          institution: item.institution,
-                          company_name: item.company_name,
-                        });
-                        setEduModal(true);
-                      }}
-                    />
-                  </div> */}
                 </div>
               </div>
             ))}
@@ -555,12 +556,6 @@ const JobSeekerProfileComponent = ({ readOnly, user }) => {
               <div className=" col-auto">
                 <h4>Skills</h4>
               </div>
-              {/* <button
-                className=" col-auto btn btn-outline-primary"
-                onClick={() => setSkillModal(true)}
-              >
-                Add Skills <FaPlus />{" "}
-              </button> */}
             </div>
 
             {user.profile.skills.map((item, index) => (
@@ -579,19 +574,6 @@ const JobSeekerProfileComponent = ({ readOnly, user }) => {
                     </span>
                   </p>
                 </div>
-                {/* <div className="col-auto">
-                  <MdEdit
-                    style={{ cursor: "pointer" }}
-                    onClick={() => {
-                      setSkillObj({
-                        ...skillObj,
-                        name: item.name,
-                        level: item.level,
-                      });
-                      setSkillModal(true);
-                    }}
-                  />
-                </div> */}
               </div>
             ))}
           </div>
@@ -601,12 +583,6 @@ const JobSeekerProfileComponent = ({ readOnly, user }) => {
               <div className=" col-auto">
                 <h4>Word Experience</h4>
               </div>
-              {/* <button
-                className=" col-auto btn btn-outline-primary"
-                onClick={() => setWorkModal(true)}
-              >
-                Add Experience <FaPlus />{" "}
-              </button> */}
             </div>
 
             {user.profile.work_experience.map((item, index) => (
@@ -614,15 +590,6 @@ const JobSeekerProfileComponent = ({ readOnly, user }) => {
                 key={index}
                 className="border border-secondary shadow-sm rounded-2 p-2 mt-4  position-relative"
               >
-                {/* <MdDelete
-                  className=" text-danger position-absolute"
-                  style={{
-                    right: "10px",
-                    bottom: "5px",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => delWorkAction(item.id)}
-                /> */}
                 <div className="row justify-content-between align-items-baseline ">
                   <div className="col-auto">
                     <p style={{ fontSize: "22px" }} className=" mb-0">
@@ -640,27 +607,6 @@ const JobSeekerProfileComponent = ({ readOnly, user }) => {
                       {moment(item.start_date).format("MMM-yy")}
                       {` - ${moment(item.stop_date).format("MMM-yy")}`}
                     </p>
-                    {/* <MdEdit
-                      className=""
-                      style={{ cursor: "pointer" }}
-                      onClick={() => {
-                        setWorkObj({
-                          ...workObj,
-                          id: item.id,
-                          start_date: new Date(Date.parse(item.start_date))
-                            .toISOString()
-                            .split("T")[0],
-                          stop_date: new Date(Date.parse(item.stop_date))
-                            .toISOString()
-                            .split("T")[0],
-                          description: item.description,
-
-                          job_title: item.job_title,
-                          company_name: item.company_name,
-                        });
-                        setWorkModal(true);
-                      }}
-                    /> */}
                   </div>
                 </div>
                 <div

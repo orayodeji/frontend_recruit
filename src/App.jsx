@@ -1,6 +1,4 @@
 import { ToastContainer } from "react-toastify";
-// import Routes from "./routes";
-import { Outlet } from "react-router-dom";
 function App() {
   return (
     <div className="App">
@@ -17,7 +15,6 @@ function App() {
         pauseOnHover
       />
       Hello world
-      {/* <Outlet /> */}
     </div>
   );
 }

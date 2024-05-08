@@ -22,7 +22,6 @@ export const createAccount = createAsyncThunk(
     try {
       const res = await api.CreateAccount(data);
       console.log(res);
-      // console.log(res.response);
       return res;
     } catch (error) {
       console.log(error.response);
@@ -76,11 +75,9 @@ export const authReducer = createSlice({
     logout: (state) => {
       console.log("Hwloeodk from  reducer");
       console.log(state);
-      // console.log(arg);
       state.user = null;
       state.access_token = null;
       state.isLoggedIn = false;
-      // localStorage.setItem("user_instance", JSON.stringify(arg.payload));
       localStorage.clear();
     },
 
@@ -98,9 +95,7 @@ export const authReducer = createSlice({
         state.isLoading = true;
       })
       .addCase(authUser.fulfilled, (state, action) => {
-        // console.log(action);
         let { data } = action.payload;
-        // console.log(data);
         if (!data.body.profile_setup) {
           state.userId = data.body.id;
           state.userType = data.body.type;
@@ -116,10 +111,6 @@ export const authReducer = createSlice({
           localStorage.setItem("access_token", data.accessToken);
           localStorage.setItem("user_instance", JSON.stringify(data.body));
         }
-        // if ()
-        //  AlertService.displaySuccessAlert(
-        //    action.payload.data.response_description
-        //  );
 
         state.isLoading = false;
       })

@@ -14,7 +14,6 @@ const EmergencyLogin = ({ title }) => {
   const [showModal, setShowModal] = useState(false);
   const [formObj, setFormObj] = useState(_obj);
   const [showPassword, setShowPassword] = useState(false);
-  // const navigate = useNavigate();
   const { isLoading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const actionFunc = async () => {

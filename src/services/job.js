@@ -2,7 +2,6 @@ import axios from "axios";
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const EmployerJobs = async (current_page, token, search = "") => {
-  // const { search, page, limit } = data;
   return await axios.get(
     `${BASE_URL}api/employers-jobs?search=${search}&page=${current_page}`,
     {

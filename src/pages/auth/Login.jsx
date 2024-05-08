@@ -14,6 +14,11 @@ const Login = () => {
   const navigate = useNavigate();
   const { isLoading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
+  /**
+   * @description
+   * This method is used to handle the login functionality in the application.
+   */
   const actionFunc = async () => {
     const { payload } = await dispatch(authUser(formObj));
 

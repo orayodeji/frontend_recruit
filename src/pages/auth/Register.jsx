@@ -19,6 +19,10 @@ const Register = () => {
   const dispatch = useDispatch();
   const { isLoading } = useSelector((state) => state.auth);
 
+  /**
+   * @description
+   * This method is used to handle the register functionality in the application.
+   */
   const RegisterUser = async () => {
     try {
       let { payload } = await dispatch(createAccount(formObj));

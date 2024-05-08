@@ -15,6 +15,13 @@ import { useSelector } from "react-redux";
 const ChatBoxComp = ({ trails, loading, performAction }) => {
   const { user } = useSelector((state) => state.auth);
   const [message, setMessage] = useState("");
+
+  /**
+   * @description This method is used to handle the Enter key press event in the chat input field.
+   * When the Enter key is pressed, it checks if the message length is greater than 0.
+   * If true, it calls the performAction function with the current message and clears the message state.
+   * @param {Event} e - The event object representing the key press event.
+   */
   const trackEnterKey = (e) => {
     if (e.key === "Enter") {
       console.log("do validate");
@@ -24,6 +31,12 @@ const ChatBoxComp = ({ trails, loading, performAction }) => {
       }
     }
   };
+
+  /**
+   * @description This method is used to handle the submission of a chat message.
+   * When the method is called, it logs a message to the console, checks if the message length is greater than 0,
+   * and if true, calls the performAction function with the current message and clears the message state.
+   */
   const commentSubmitForm = () => {
     console.log("Hello World");
     if (message.length > 0) {

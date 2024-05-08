@@ -15,6 +15,16 @@ const JobDetailsComponent = ({ jobObject, showApplyButton }) => {
   const { user, isLoggedIn, access_token } = useSelector((state) => state.auth);
   const [showConfirm, setShowConfirm] = useState(false);
   const [applyLoading, setApplyLoading] = useState(false);
+
+  /**
+   * @description This method is used to apply for a job.
+   * It sets the applyLoading state to true, sends a request to apply for the job using the API,
+   * and handles the response or error accordingly.
+   * If the request is successful, it displays a success alert, logs the response data,
+   * sets the applyLoading state to false, and closes the confirmation modal.
+   * If an error occurs, it displays an error alert, sets the applyLoading state to false,
+   * and closes the confirmation modal.
+   */
   const ApplyJob = async () => {
     try {
       setApplyLoading(true);
