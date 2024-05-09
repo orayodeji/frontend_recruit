@@ -26,11 +26,17 @@ const Dashboard = () => {
     <div className=" px-3">
       <div className="row justify-content-center">
         <div className="col-md-12">
-          <div className="row justify-content-between">
+          <div
+            className="row justify-content-between"
+            style={{ paddingRight: "12rem" }}
+          >
             <div className=" col-auto">
               <h3 className=" general-color-text">Company's Dashboard</h3>
             </div>
-            <Link to="/create-job" className="col-auto btn btn-success">
+            <Link
+              to="/create-job"
+              className="col-auto btn btn-success general-bg-color"
+            >
               Create Job
             </Link>
           </div>

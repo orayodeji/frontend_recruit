@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unescaped-entities */
 import { useSelector } from "react-redux";
@@ -10,6 +11,7 @@ import ChatBoxComp from "../components/ChatBoxComp";
 import AlertService from "../services/alertService";
 import ApplicationStatus from "../assets/applicationStatus.json";
 import Modal from "../components/Modal";
+import GoBackBTN from "../components/GoBackBTN";
 const SingleApplication = () => {
   const { user, access_token } = useSelector((state) => state.auth);
   const [loading, setLoading] = useState(false);
@@ -136,7 +138,7 @@ const SingleApplication = () => {
   );
 
   return (
-    <div className="  px-5 bg-white shadow-sm pt-2 pb-5">
+    <div className="  px-5  shadow-sm pt-2 pb-5 bg-white rounded-2">
       {showTreat && (
         <Modal
           // start={true}
@@ -147,7 +149,9 @@ const SingleApplication = () => {
           pd={"0px"}
         />
       )}
-      <div className=" container-lg row justify-content-center">
+      <GoBackBTN />
+
+      <div className=" container-lg row justify-content-center bg-white p-3 py-5 rounded-2">
         <div className="col-md-11 mb-2 justify-content-between d-inline-flex">
           {user.type === "jobseeker" && (
             <div>
@@ -223,13 +227,16 @@ const SingleApplication = () => {
             </div>
           )}
         </div>
-        <div className="col-md-11 mb-1">
+        <div className="col-md-11 mb-1 bg-light p-2 rounded-3 mb-3">
           <ul className="nav nav-pills">
             <li className="nav-item me-2">
               <a
-                className={`nav-link ${
-                  activeTab === 1 ? "active" : ""
-                } general-color-text fw-bold`}
+                style={{ display: "block", padding: "0.5rem 1rem" }}
+                className={`${
+                  activeTab === 1
+                    ? "active text-white general-bg-color"
+                    : " general-color-text"
+                }  fw-bold rounded-3`}
                 aria-current="page"
                 href="#"
                 onClick={() => setActiveTab(1)}
@@ -240,9 +247,12 @@ const SingleApplication = () => {
             {user.type === "employer" && (
               <li className="nav-item me-2">
                 <a
-                  className={`nav-link ${
-                    activeTab === 3 ? "active text-white" : ""
-                  } general-color-text fw-bold`}
+                  style={{ display: "block", padding: "0.5rem 1rem" }}
+                  className={`${
+                    activeTab === 3
+                      ? "active text-white general-bg-color"
+                      : " general-color-text"
+                  }  fw-bold rounded-3`}
                   aria-current="page"
                   href="#"
                   onClick={() => setActiveTab(3)}
@@ -253,9 +263,12 @@ const SingleApplication = () => {
             )}
             <li className="nav-item me-2">
               <a
-                className={`nav-link ${
-                  activeTab === 2 ? "active" : ""
-                } general-color-text fw-bold`}
+                style={{ display: "block", padding: "0.5rem 1rem" }}
+                className={`${
+                  activeTab === 2
+                    ? "active text-white general-bg-color"
+                    : " general-color-text"
+                }  fw-bold rounded-3`}
                 aria-current="page"
                 href="#"
                 onClick={() => setActiveTab(2)}

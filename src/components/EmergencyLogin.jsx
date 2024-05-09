@@ -8,8 +8,8 @@ import Modal from "./Modal";
 
 const EmergencyLogin = ({ title }) => {
   const _obj = {
-    email: "vincipyro@gmail.com",
-    password: "Bolaji93,",
+    email: "",
+    password: "",
   };
   const [showModal, setShowModal] = useState(false);
   const [formObj, setFormObj] = useState(_obj);
@@ -107,7 +107,7 @@ const EmergencyLogin = ({ title }) => {
     <>
       {showModal && (
         <Modal
-          start={true}
+          // start={true}
           show={showModal}
           content={content}
           size={"large"}
@@ -116,7 +116,7 @@ const EmergencyLogin = ({ title }) => {
         />
       )}
       <button
-        className="btn px-3 py-1 text-white fw-bold bg-black btn-dark"
+        className="btn px-3 py-1 text-white fw-bold  rounded-2 btn rounded-1 btn-primary general-bg-color"
         onClick={() => setShowModal(true)}
       >
         {title}

@@ -7,13 +7,13 @@ import GoBackBTN from "../components/GoBackBTN";
 import Pagination from "../components/Pagination";
 const Applications = () => {
   const { access_token, user } = useSelector((state) => state.auth);
-  const { slug } = useParams();
-  const [jobObject, setJobObject] = useState(null);
-  const [candidates, setCandidates] = useState([]);
+  // const { slug } = useParams();
+  // const [jobObject, setJobObject] = useState(null);
+  // const [candidates, setCandidates] = useState([]);
   const [applicants, setApplicants] = useState([]);
   const [pageCount, setPageCount] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
 
   /**
@@ -61,7 +61,12 @@ const Applications = () => {
                 <th scope="col"></th>
                 <th scope="col">Date Applied</th>
                 <th scope="col">Job Title</th>
-                <th scope="col">Applicant Name</th>
+
+                <th scope="col">
+                  {user.type === "jobseeker"
+                    ? "Company's Name"
+                    : "Applicant Name"}
+                </th>
                 <th scope="col">Application Status</th>
                 <th scope="col">Interview Date</th>
                 <th></th>
@@ -77,8 +82,11 @@ const Applications = () => {
                     </th>
                     <th className=" fw-bold">{item.job.job_title}</th>
                     <th className=" fw-normal">
-                      {item.job_seeker.profile.first_name}{" "}
-                      {item.job_seeker.profile.last_name}
+                      {" "}
+                      {user.type === "employer"
+                        ? ` ${item.job_seeker.profile.first_name}
+                      ${item.job_seeker.profile.last_name}`
+                        : `${item.employer.profile.name}`}
                     </th>
                     <th className=" fw-normal">{item.status}</th>
                     <th className=" fw-normal">

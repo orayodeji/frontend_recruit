@@ -2,7 +2,6 @@ import { useState } from "react";
 import { FaEyeSlash } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
-// import { isNumber } from "../../utils";
 import { Link, useNavigate } from "react-router-dom";
 import { createAccount } from "../../store/reducer/auth";
 
@@ -10,10 +9,10 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const _obj = {
-    phone_number: "07456210345",
-    password: "Bolaji93,",
-    email: "orayodeji@gmail.com",
-    type: "jobseeker",
+    phone_number: "",
+    password: "",
+    email: "",
+    type: "",
   };
   const [formObj, setFormObj] = useState(_obj);
   const dispatch = useDispatch();
@@ -37,9 +36,16 @@ const Register = () => {
 
   return (
     <div
-      className="justify-content-center row align-items-center pt-4 bg-white-50"
+      className="justify-content-center row align-items-center pt-4 bg-white-50 position-relative"
       style={{ minHeight: "100vh" }}
     >
+      <Link
+        to={"/"}
+        className="navbar-brand border general-border-color rounded-circle p-2 border-3 general-color-text position-fixed start-0 top-0 w-auto"
+        style={{}}
+      >
+        LRA
+      </Link>
       <div className=" col-lg-5 col-md-8 shadow-sm p-4 bg-white rounded-3">
         <div>
           <h1 className="general-color-text">Please Register Your Account!</h1>

@@ -1,8 +1,1 @@
-[
-  "shortlisted",
-  "applied",
-  "rejected",
-  "interview-scheduled",
-  "on-hold",
-  "hired"
-]
+["rejected", "interview-scheduled", "on-hold", "hired"]

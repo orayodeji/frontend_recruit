@@ -52,7 +52,7 @@ const CreateJobForm = ({ formObj, setFormObj, loading, performAction }) => {
           className=" form-label fw-bold general-color-text"
           style={{ fontSize: "16px" }}
         >
-          Salary <span className=" text-danger">*</span>
+          Salary Type <span className=" text-danger">*</span>
         </label>
         <select
           name=""

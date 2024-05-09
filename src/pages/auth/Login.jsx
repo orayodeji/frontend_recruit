@@ -36,9 +36,16 @@ const Login = () => {
   };
   return (
     <div
-      className="justify-content-center row align-items-center pt-4 bg-white-50 "
+      className="justify-content-center row align-items-center pt-4 bg-white-50 position-relative"
       style={{ minHeight: "100vh" }}
     >
+      <Link
+        to={"/"}
+        className="navbar-brand border general-border-color rounded-circle p-2 border-3 general-color-text position-fixed start-0 top-0 w-auto"
+        style={{}}
+      >
+        LRA
+      </Link>
       <div className=" col-lg-4 col-md-8 shadow-sm p-4 bg-white rounded-3">
         <div>
           <h1 className=" general-color-text">Please Login!</h1>

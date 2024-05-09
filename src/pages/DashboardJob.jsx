@@ -62,7 +62,6 @@ const DashboardJob = () => {
     }
   }, [slug]);
 
-
   const ShortlistCandidate = useCallback(
     async (id) => {
       try {
@@ -125,12 +124,15 @@ const DashboardJob = () => {
       </div>
       <div className=" row justify-content-center">
         <div className="col-md-11 mb-4 bg-white-50 bg-light p-2 rounded-2">
-          <ul className="nav nav-pills">
+          <ul className="nav nav-pills mt-2">
             <li className="nav-item me-2">
               <a
-                className={`nav-link ${
-                  activeTab === 1 ? "active" : ""
-                } fw-bold`}
+                style={{ display: "block", padding: "0.5rem 1rem" }}
+                className={`${
+                  activeTab === 1
+                    ? "active text-white general-bg-color"
+                    : " general-color-text"
+                }  fw-bold rounded-3`}
                 aria-current="page"
                 href="#"
                 onClick={() => setActiveTab(1)}
@@ -140,9 +142,12 @@ const DashboardJob = () => {
             </li>
             <li className="nav-item me-2">
               <a
-                className={`nav-link ${
-                  activeTab === 2 ? "active text-white" : ""
-                }  fw-bold`}
+                style={{ display: "block", padding: "0.5rem 1rem" }}
+                className={`${
+                  activeTab === 2
+                    ? "active text-white general-bg-color"
+                    : " general-color-text"
+                }  fw-bold rounded-3`}
                 aria-current="page"
                 href="#"
                 onClick={() => setActiveTab(2)}
@@ -152,9 +157,12 @@ const DashboardJob = () => {
             </li>
             <li className="nav-item me-2">
               <a
-                className={`nav-link ${
-                  activeTab === 3 ? "active text-white" : ""
-                }  fw-bold`}
+                style={{ display: "block", padding: "0.5rem 1rem" }}
+                className={` ${
+                  activeTab === 3
+                    ? "active text-white general-bg-color"
+                    : " general-color-text"
+                }  fw-bold rounded-3`}
                 aria-current="page"
                 href="#"
                 onClick={() => setActiveTab(3)}

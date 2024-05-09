@@ -43,7 +43,7 @@ const CreateJobSeekerProfile = () => {
     );
     console.log(payload);
     if (payload.status === 201) {
-      navigate("/profile");
+      navigate("/");
     }
   };
 
