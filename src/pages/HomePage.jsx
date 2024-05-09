@@ -125,6 +125,7 @@ const HomePage = () => {
           type="text"
           className=" general-border-color"
           value={search}
+          placeholder="Job Title, Location, Skills"
           onKeyDown={(e) => trackEnterKey(e)}
           onChange={(e) => setSearch(e.target.value)}
           style={{

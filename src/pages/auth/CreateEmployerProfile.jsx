@@ -7,8 +7,8 @@ const CreateEmployerProfile = () => {
   const dispatch = useDispatch();
   const { isLoading, userId } = useSelector((state) => state.auth);
   const _obj = {
-    name: "ABC Technologies",
-    location: "Hounslow, London",
+    name: "",
+    location: "",
     sector: "",
   };
   const [formObj, setFormObj] = useState(_obj);

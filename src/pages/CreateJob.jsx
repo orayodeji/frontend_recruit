@@ -11,16 +11,16 @@ const CreateJob = () => {
   const { access_token } = useSelector((state) => state.auth);
   const [loading, setLoading] = useState(false);
   const _obj = {
-    job_title: "Senior Developer",
-    location: "London",
-    skills: ["excel", "vue", "nuxt"],
-    job_type: "part-time",
-    job_mode: "hybrid",
+    job_title: "",
+    location: "",
+    skills: [],
+    job_type: "",
+    job_mode: "",
     salary: "",
     salary_type: "",
     educational_level: "",
     educational_qualification: "",
-    industry: "healthcare",
+    industry: "",
     closing_date: "",
     description: "",
   };
